@@ -1,15 +1,3 @@
-// Enemy should appear in "Defender"
-// Your Character shoudl appear in "Your Character"
-
-// When I press "Attack" should decrease enemy hp by my character's base attack
-// When an enemy is attacked, they should counter attack with a counter attack, my character's hp should decrease by that amount
-// My character's attack should increase by a base amount each attack
-
-
-// Reset the defaults
-var chosenHero = null;
-var chosenDefender = null;
-
 // Objects are the characters of the game
 var katarina = {
     name: "katarina",
@@ -17,9 +5,6 @@ var katarina = {
     ap: 10,
     bp: 5,
     counter: 20,
-    hero: false,
-    enemy: false,
-    defender: false,
 }
 
 var lucian = {
@@ -28,9 +13,6 @@ var lucian = {
     ap: 10,
     bp: 5,
     counter: 20,
-    hero: false,
-    enemy: false,
-    defender: false,
 }
 
 var rengar = {
@@ -39,9 +21,6 @@ var rengar = {
     ap: 10,
     bp: 5,
     counter: 20,
-    hero: false,
-    enemy: false,
-    defender: false,
 }
 
 var veigar = {
@@ -50,76 +29,115 @@ var veigar = {
     ap: 10,
     bp: 5,
     counter: 20,
-    hero: false,
-    enemy: false,
-    defender: false,
 }
 
+var heroChosen = false;
+var defenderChosen = false;
+var gameOver = false;
+var hero = {};
+var defender = {};
+var defeatedEnemies = {}; 
 
-$("#katarina").click(function() {
-    if (!katarina.hero && !katarina.defender){
-        $(this).appendTo("#character");
-        $(this).css("border-color", "#53f442");
+function resetGame() {
+    location.reload();
+}
 
-        $("#lucian, #rengar, #veigar").appendTo("#enemies");
-        $("#lucian, #rengar, #veigar").css("border-color", "#c10000");
+function heroStats(object) {
+    hero.name = object.name;
+    hero.hp = object.hp;
+    hero.ap = object.ap;
+    hero.bp = object.bp;
+    hero.counter = object.counter;
+}
 
-        katarina.hero = true;
-        lucian.enemy = true;
-        rengar.enemy = true;
-        veigar.enemy = true;
-        chosenHero = katarina;
-    }
-});
-
-$("#lucian").click(function() {
-    if (!lucian.hero && !lucian.enemy){
-        $(this).appendTo("#character");
-        $(this).css("border-color", "#53f442");
-
-        $("#katarina, #rengar, #veigar").appendTo("#enemies");
-        $("#katarina, #rengar, #veigar").css("border-color", "#c10000");
-
-        lucian.hero = true;
-        katarina.enemy = true;
-        rengar.enemy = true;
-        veigar.enemy = true;
-        chosenHero = lucian;
-    }
-});
-
-$("#rengar").click(function() {
-    if (!rengar.hero && !rengar.enemy){
-        $(this).appendTo("#character");
-        $(this).css("border-color", "#53f442");
-
-        $("#katarina, #lucian, #veigar").appendTo("#enemies");
-        $("#katarina, #lucian, #veigar").css("border-color", "#c10000");
-
-        rengar.hero = true;
-        katarina.enemy = true;
-        lucian.enemy = true;
-        veigar.enemy = true;
-        chosenHero = rengar;
-    }
-});
-
-$("#veigar").click(function() {
-    if (!veigar.hero && !veigar.enemy){
-        $(this).appendTo("#character");
-        $(this).css("border-color", "#53f442");
-
-        $("#katarina, #rengar, #lucian").appendTo("#enemies");
-        $("#katarina, #rengar, #lucian").css("border-color", "#c10000");
-
-        veigar.hero = true;
-        katarina.enemy = true;
-        rengar.enemy = true;
-        lucian.enemy = true;
-        chosenHero = veigar;
-    }
-});
+function defenderStats(object) {
+    defender.name = object.name;
+    defender.hp = object.name;
+    defender.ap = object.name;
+    defender.bp = object.name;
+    defender.counter = object.name;
+}
 
 $(document).ready(function(){
+    
+    $("#katarina").click(function() {
+        if (!heroChosen) {
+            $(this).appendTo("#hero");
+            $(this).css("border-color", "#53f442");
+            $("#lucian, #rengar, #veigar").appendTo("#enemies");
+            $("#lucian, #rengar, #veigar").css("border-color", "#c10000");
+            $("#lucian, #rengar, #veigar").addClass("enemies");
+            heroStats(katarina);
+            heroChosen = true;
+        } else if (heroChosen && !defenderChosen) {
+            if ($(this).hasClass("enemies")) {
+                defenderStats(katarina);
+                $(this).appendTo("#defender");
+                $(this).addClass("defender");
+                defenderChosen = true;
+            }
+        }
+    });
+
+    $("#lucian").click(function() {
+        if (!heroChosen){
+            $(this).appendTo("#hero");
+            $(this).css("border-color", "#53f442");
+            $("#katarina, #rengar, #veigar").appendTo("#enemies");
+            $("#katarina, #rengar, #veigar").css("border-color", "#c10000");
+            $("#katarina, #rengar, #veigar").addClass("enemies");
+            heroChosen = true;
+            heroStats(lucian);
+        } else if (heroChosen && !defenderChosen) {
+            if ($(this).hasClass("enemies")) {
+                defenderStats(lucian);
+                $(this).appendTo("#defender");
+                $(this).addClass("defender");
+                defenderChosen = true;
+            }
+        }
+    });
+
+    $("#rengar").click(function() {
+        if (!heroChosen){
+            $(this).appendTo("#hero");
+            $(this).css("border-color", "#53f442");
+            $("#katarina, #lucian, #veigar").appendTo("#enemies");
+            $("#katarina, #lucian, #veigar").css("border-color", "#c10000");
+            $("#katarina, #lucian, #veigar").addClass("enemies");
+            heroChosen = true;
+            heroStats(rengar);
+        } else if (heroChosen && !defenderChosen) {
+            if ($(this).hasClass("enemies")) {
+                defenderStats(rengar);
+                $(this).appendTo("#defender");
+                $(this).addClass("defender");
+                defenderChosen = true;
+            }
+        }
+    });
+
+    $("#veigar").click(function() {
+        if (!heroChosen){
+            $(this).appendTo("#hero");
+            $(this).css("border-color", "#53f442");
+            $("#katarina, #rengar, #lucian").appendTo("#enemies");
+            $("#katarina, #rengar, #lucian").css("border-color", "#c10000");
+            $("#katarina, #rengar, #lucian").addClass("enemies");
+            heroChosen = true;
+            heroStats(veigar);
+        } else if (heroChosen && !defenderChosen) {
+            if ($(this).hasClass("enemies")) {
+                defenderStats(veigar);
+                $(this).appendTo("#defender");
+                $(this).addClass("defender");
+                defenderChosen = true;
+            }
+        }
+    });
+
+   
+
+
 
 });
