@@ -1,0 +1,53 @@
+/* * {
+    outline: 1px solid red;
+} 
+ */
+h1 {
+    background-color: rgb(3, 3, 151);
+    color: rgb(177, 177, 80);
+}
+
+.selection {
+    background-color: rgba(167, 163, 163, 0.664);
+}
+
+.char-image {
+    width: 110px;
+    height: auto;
+    display: inline-block;
+    margin-left: 50px;
+    background-color: black;
+    color: white;
+    border: 5px solid grey;
+}
+
+.char-image h4 {
+    margin: 0;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.char-image img {
+    text-align: center;
+    height: 80px;
+}
+
+.char-image .hpDiv {
+    padding: 5px;
+}
+
+#character {
+    margin-top: 20px;
+}
+
+#enemies {
+    margin-top: 20px;
+}
+
+#attacker {
+    margin-top: 20px;
+}
+
+#defender {
+    margin-top: 20px;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>League RPG!</title>
+
+    <link rel="stylesheet" href="assets/css/reset.css"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">League of Legends RPG!</h1>
+
+        <div class="selection text-center">
+            <h2 class="text-center">Choose Your Character</h2>
+            
+            <div class="char-image" id="katarina">
+                <h4 class="text-center">Katarina</h4>
+                <img class="text-center" src="assets/images/katarina.jpg" />
+                <h4 class="text-center">HP: 100</h4>
+            </div>
+
+            <div class="char-image" id="lucian">
+                <h4 class="text-center">Lucian</h4>
+                <img class="text-center" src="assets/images/lucian.jpg" />
+                <h4 class="text-center">HP: 100</h4>
+            </div>
+
+            <div class="char-image" id="rengar">
+                <h4 class="text-center">Rengar</h4>
+                <img class="text-center" src="assets/images/rengar.jpg" />
+                <h4 class="text-center">HP: 100</h4>
+            </div>
+
+            <div class="char-image" id="veigar">
+                <h4 class="text-center">Veigar</h4>
+                <img class="text-center" src="assets/images/veigar.jpg" />
+                <h4 class="text-center">HP: 100</h4>
+            </div>
+        </div>
+
+        <div class="text-center" id="character">
+            <h2>Your Character</h2>
+        </div>
+
+        <div class="text-center" id="enemies">
+            <h2>Enemies Available to Attack</h2>
+        </div>
+
+        <div class="text-center" id="attacker">
+            <h2>Fight Section</h2>
+            <button type="button" class="btn btn-outline-danger">Attack</button>
+        </div>
+
+        <div class="text-center" id="defender">
+            <h2>Defender</h2>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script rel="type/javascript" src="assets/javascript/game.js"></script>
+</body>
+</html>
