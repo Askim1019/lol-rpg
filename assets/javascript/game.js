@@ -59,11 +59,12 @@ function defenderStats(object) {
 }
 
 $(document).ready(function(){
-    
+
     $("#katarina").click(function() {
         if (!heroChosen) {
             $(this).appendTo("#hero");
             $(this).css("border-color", "#53f442");
+            $(this).addClass("hero");
             $("#lucian, #rengar, #veigar").appendTo("#enemies");
             $("#lucian, #rengar, #veigar").css("border-color", "#c10000");
             $("#lucian, #rengar, #veigar").addClass("enemies");
@@ -72,17 +73,22 @@ $(document).ready(function(){
         } else if (heroChosen && !defenderChosen) {
             if ($(this).hasClass("enemies")) {
                 defenderStats(katarina);
+                $(this).removeClass("enemies");
                 $(this).appendTo("#defender");
                 $(this).addClass("defender");
                 defenderChosen = true;
             }
         }
+
     });
+
+
 
     $("#lucian").click(function() {
         if (!heroChosen){
             $(this).appendTo("#hero");
             $(this).css("border-color", "#53f442");
+            $(this).addClass("hero");
             $("#katarina, #rengar, #veigar").appendTo("#enemies");
             $("#katarina, #rengar, #veigar").css("border-color", "#c10000");
             $("#katarina, #rengar, #veigar").addClass("enemies");
@@ -91,17 +97,22 @@ $(document).ready(function(){
         } else if (heroChosen && !defenderChosen) {
             if ($(this).hasClass("enemies")) {
                 defenderStats(lucian);
+                $(this).removeClass("enemies");
                 $(this).appendTo("#defender");
                 $(this).addClass("defender");
                 defenderChosen = true;
             }
         }
+
     });
+
+
 
     $("#rengar").click(function() {
         if (!heroChosen){
             $(this).appendTo("#hero");
             $(this).css("border-color", "#53f442");
+            $(this).addClass("hero");
             $("#katarina, #lucian, #veigar").appendTo("#enemies");
             $("#katarina, #lucian, #veigar").css("border-color", "#c10000");
             $("#katarina, #lucian, #veigar").addClass("enemies");
@@ -110,17 +121,22 @@ $(document).ready(function(){
         } else if (heroChosen && !defenderChosen) {
             if ($(this).hasClass("enemies")) {
                 defenderStats(rengar);
+                $(this).removeClass("enemies");
                 $(this).appendTo("#defender");
                 $(this).addClass("defender");
                 defenderChosen = true;
             }
         }
+
     });
+
+
 
     $("#veigar").click(function() {
         if (!heroChosen){
-            $(this).appendTo("#hero");
+            $(this).appendTo("#hero")
             $(this).css("border-color", "#53f442");
+            $(this).addClass("hero");
             $("#katarina, #rengar, #lucian").appendTo("#enemies");
             $("#katarina, #rengar, #lucian").css("border-color", "#c10000");
             $("#katarina, #rengar, #lucian").addClass("enemies");
@@ -129,11 +145,13 @@ $(document).ready(function(){
         } else if (heroChosen && !defenderChosen) {
             if ($(this).hasClass("enemies")) {
                 defenderStats(veigar);
+                $(this).removeClass("enemies");
                 $(this).appendTo("#defender");
                 $(this).addClass("defender");
                 defenderChosen = true;
             }
         }
+
     });
 
    
