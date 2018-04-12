@@ -3,7 +3,7 @@ var katarina = {
     name: "katarina",
     hp: 100,
     ap: 10,
-    bp: 5,
+    ba: 10,
     counter: 20,
 }
 
@@ -11,7 +11,7 @@ var lucian = {
     name: "lucian",
     hp: 100,
     ap: 10,
-    bp: 5,
+    ba: 5,
     counter: 20,
 }
 
@@ -19,7 +19,7 @@ var rengar = {
     name: "rengar",
     hp: 100,
     ap: 10,
-    bp: 5,
+    ba: 5,
     counter: 20,
 }
 
@@ -27,7 +27,7 @@ var veigar = {
     name: "veigar",
     hp: 100,
     ap: 10,
-    bp: 5,
+    ba: 5,
     counter: 20,
 }
 
@@ -46,17 +46,19 @@ function heroStats(object) {
     hero.name = object.name;
     hero.hp = object.hp;
     hero.ap = object.ap;
-    hero.bp = object.bp;
+    hero.ba = object.ba;
     hero.counter = object.counter;
 }
 
 function defenderStats(object) {
     defender.name = object.name;
-    defender.hp = object.name;
-    defender.ap = object.name;
-    defender.bp = object.name;
-    defender.counter = object.name;
+    defender.hp = object.hp;
+    defender.ap = object.ap;
+    defender.ba = object.ba;
+    defender.counter = object.counter;
 }
+
+
 
 $(document).ready(function(){
 
@@ -155,6 +157,18 @@ $(document).ready(function(){
     });
 
    
+    $("#attack-btn").click(function(){
+        if (heroChosen && defenderChosen && !gameOver) {
+            console.log("attack!");
+            defender.hp -= hero.ap;
+            hero.hp -= defender.counter;
+            hero.ap += hero.ba;
+            console.log(defender.hp);
+            console.log(hero.hp);
+            console.log(hero.ap);
+        }
+    });
+
 
 
 
