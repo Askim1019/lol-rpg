@@ -1,7 +1,7 @@
 // Objects are the characters of the game
 var katarina = {
     name: "katarina",
-    hp: 100,
+    hp: 500,
     ap: 10,
     ba: 10,
     counter: 20,
@@ -63,7 +63,7 @@ $(document).ready(function(){
     $("#katarina").click(function() {
         if (!heroChosen) {
             $(this).appendTo("#hero");
-            $(this).css("border-color", "#53f442");
+            $(this).css({"border-color": "#53f442", "margin-left": "0"});
             $("#kathealth").addClass("health");
             $("#lucian, #rengar, #veigar").appendTo("#enemies");
             $("#lucian, #rengar, #veigar").css("border-color", "#c10000");
@@ -88,7 +88,7 @@ $(document).ready(function(){
     $("#lucian").click(function() {
         if (!heroChosen){
             $(this).appendTo("#hero");
-            $(this).css("border-color", "#53f442");
+            $(this).css({"border-color": "#53f442", "margin-left": "0"});
             $("#lucianhealth").addClass("health");
             $("#katarina, #rengar, #veigar").appendTo("#enemies");
             $("#katarina, #rengar, #veigar").css("border-color", "#c10000");
@@ -113,7 +113,7 @@ $(document).ready(function(){
     $("#rengar").click(function() {
         if (!heroChosen){
             $(this).appendTo("#hero");
-            $(this).css("border-color", "#53f442");
+            $(this).css({"border-color": "#53f442", "margin-left": "0"});
             $("#rengarhealth").addClass("health");
             $("#katarina, #lucian, #veigar").appendTo("#enemies");
             $("#katarina, #lucian, #veigar").css("border-color", "#c10000");
@@ -138,7 +138,7 @@ $(document).ready(function(){
     $("#veigar").click(function() {
         if (!heroChosen){
             $(this).appendTo("#hero")
-            $(this).css("border-color", "#53f442");
+            $(this).css({"border-color": "#53f442", "margin-left": "0"});
             $("#veigarhealth").addClass("health");
             $("#katarina, #rengar, #lucian").appendTo("#enemies");
             $("#katarina, #rengar, #lucian").css("border-color", "#c10000");
@@ -175,8 +175,9 @@ $(document).ready(function(){
                              .css("color", "red")
                              .addClass("text-center");
                 $(".hero").hide();
+                gameOver = true;
             } else if (defender.hp <= 0 && hero.hp > 0 && defeated < 3) {
-                $("#defender").removeClass("defender")
+                $(".defender").removeClass("defender")
                               .hide();
                 defenderChosen = false;
                 defeated++;
@@ -184,6 +185,11 @@ $(document).ready(function(){
             }
         }
 
+        if (defeated === 3) {
+            $("#message").html("<h2> VICTORIOUS! </h2>")
+                         .css("color", "green")
+                         .addClass("text-center");
+        }
 
     });
 
