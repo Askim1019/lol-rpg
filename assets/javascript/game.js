@@ -36,7 +36,7 @@ var defenderChosen = false;
 var gameOver = false;
 var hero = {};
 var defender = {};
-var defeatedEnemies = {}; 
+var defeated = 0; 
 
 function resetGame() {
     location.reload();
@@ -58,15 +58,13 @@ function defenderStats(object) {
     defender.counter = object.counter;
 }
 
-
-
 $(document).ready(function(){
 
     $("#katarina").click(function() {
         if (!heroChosen) {
             $(this).appendTo("#hero");
             $(this).css("border-color", "#53f442");
-            $(this).addClass("hero");
+            $("#kathealth").addClass("health");
             $("#lucian, #rengar, #veigar").appendTo("#enemies");
             $("#lucian, #rengar, #veigar").css("border-color", "#c10000");
             $("#lucian, #rengar, #veigar").addClass("enemies");
@@ -78,6 +76,7 @@ $(document).ready(function(){
                 $(this).removeClass("enemies");
                 $(this).appendTo("#defender");
                 $(this).addClass("defender");
+                $("#kathealth").addClass("def-health");
                 defenderChosen = true;
             }
         }
@@ -90,7 +89,7 @@ $(document).ready(function(){
         if (!heroChosen){
             $(this).appendTo("#hero");
             $(this).css("border-color", "#53f442");
-            $(this).addClass("hero");
+            $("#lucianhealth").addClass("health");
             $("#katarina, #rengar, #veigar").appendTo("#enemies");
             $("#katarina, #rengar, #veigar").css("border-color", "#c10000");
             $("#katarina, #rengar, #veigar").addClass("enemies");
@@ -102,6 +101,7 @@ $(document).ready(function(){
                 $(this).removeClass("enemies");
                 $(this).appendTo("#defender");
                 $(this).addClass("defender");
+                $("#lucianhealth").addClass("def-health");
                 defenderChosen = true;
             }
         }
@@ -114,7 +114,7 @@ $(document).ready(function(){
         if (!heroChosen){
             $(this).appendTo("#hero");
             $(this).css("border-color", "#53f442");
-            $(this).addClass("hero");
+            $("#rengarhealth").addClass("health");
             $("#katarina, #lucian, #veigar").appendTo("#enemies");
             $("#katarina, #lucian, #veigar").css("border-color", "#c10000");
             $("#katarina, #lucian, #veigar").addClass("enemies");
@@ -126,6 +126,7 @@ $(document).ready(function(){
                 $(this).removeClass("enemies");
                 $(this).appendTo("#defender");
                 $(this).addClass("defender");
+                $("#rengarhealth").addClass("def-health");
                 defenderChosen = true;
             }
         }
@@ -138,7 +139,7 @@ $(document).ready(function(){
         if (!heroChosen){
             $(this).appendTo("#hero")
             $(this).css("border-color", "#53f442");
-            $(this).addClass("hero");
+            $("#veigarhealth").addClass("health");
             $("#katarina, #rengar, #lucian").appendTo("#enemies");
             $("#katarina, #rengar, #lucian").css("border-color", "#c10000");
             $("#katarina, #rengar, #lucian").addClass("enemies");
@@ -150,6 +151,7 @@ $(document).ready(function(){
                 $(this).removeClass("enemies");
                 $(this).appendTo("#defender");
                 $(this).addClass("defender");
+                $("#veigarhealth").addClass("def-health");
                 defenderChosen = true;
             }
         }
@@ -159,14 +161,30 @@ $(document).ready(function(){
    
     $("#attack-btn").click(function(){
         if (heroChosen && defenderChosen && !gameOver) {
-            console.log("attack!");
             defender.hp -= hero.ap;
             hero.hp -= defender.counter;
             hero.ap += hero.ba;
-            console.log(defender.hp);
+            $(".health").html(hero.hp);
+            $(".def-health").html(defender.hp);
             console.log(hero.hp);
+            console.log(defender.hp);
             console.log(hero.ap);
+
+            if (hero.hp <= 0) {
+                $("#message").html("<h2> Game Over </h2>")
+                             .css("color", "red")
+                             .addClass("text-center");
+                $(".hero").hide();
+            } else if (defender.hp <= 0 && hero.hp > 0 && defeated < 3) {
+                $("#defender").removeClass("defender")
+                              .hide();
+                defenderChosen = false;
+                defeated++;
+                console.log(defeated);
+            }
         }
+
+
     });
 
 
